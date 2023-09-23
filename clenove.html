@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="image/png" href="images/book.png"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Členové • Školní zpravodajství</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .menu div:nth-child(2) a{
+            color: rgb(255, 255, 255);
+        }
+    </style>
+    <script>
+        document.addEventListener("click", (e) => {
+            var box = document.getElementsByClassName("logreg")[0].getBoundingClientRect();
+            if(document.getElementsByClassName("logreg")[0].innerHTML != "") {
+                var buttonBlock = document.getElementsByClassName("logregbutton")[0].getBoundingClientRect();
+                var x = e.clientX;
+                var y = e.clientY;
+                console.log("DIFF: " + (box.bottom - box.top))
+                if(x >= buttonBlock.left && x <= buttonBlock.right) {
+                    if(y >= buttonBlock.top && y <= buttonBlock.bottom) return;
+                }
+                if(box.top > y || box.bottom < y || box.left > x || box.right < x) {
+                    console.log("HIDE")
+                    document.getElementsByClassName("logreg")[0].innerHTML = "";
+                    document.querySelector(":root").style.setProperty("--logregheight", "0");
+                    document.querySelector(":root").style.setProperty("--logregvisibility", "hidden");
+                }
+            }
+        })
+    </script>
+</head>
+<body onload="start(), loadUsersPage(), loadUser()" onresize="resize()">
+    <div class="loginIcon" onclick="loginButtonClick()">
+        <img src="images/login.png" alt="">
+    </div>
+    <div class="logreg">
+        <div class="logregTitle">
+            <div>Registrace</div>
+        </div>
+        <div class="error"></div>
+        <div class="nickD">
+            <div class="logregIMG">
+                <img src="images/userLogin.png" alt="">
+            </div>
+            <input type="text" placeholder="Uživatelské jméno" id="nick">
+        </div>
+        <div class="passwordD">
+            <div class="logregIMG">
+                <img src="images/password.png" alt="">
+            </div>
+            <input type="password" placeholder="Heslo" id="password">
+        </div>
+        <div class="passwordD">
+            <div class="logregIMG">
+                <img src="images/password.png" alt="">
+            </div>
+            <input type="password" placeholder="Heslo znovu" id="passwordagain">
+        </div>
+        <div class="logregbutton" onclick="register()">Zaregistrovat se</div>
+        <div class="logregSwap">
+            Již jsi členem? <span onclick="loginForm()">Přihlaš se</span>
+        </div>
+    </div>
+    <div class="head">
+        <div class="menu">
+            <div><a href="index.html">Domů</a></div>
+            <div><a href="clenove.html">Členové</a></div>
+            <div><a href="clanky.html">Články</a></div>
+        </div>
+        <img src="images/book.png" alt="">
+        <div class="bubbles">
+            
+        </div>
+    </div>
+    <div class="body">
+        <div class="userL">
+            <div class="userI"><img src="images/user.png" alt=""></div>
+            <div class="userN">Tomáš Urban</div>
+            <div class="userS">
+                <div class="userJ">
+                    <div>Zaregistrován</div>
+                    <div>17.04.2023</div>
+                </div>
+                <div class="userA">
+                    <div>Příspěvky</div>
+                    <div>10</div>
+                </div>
+            </div>
+        </div>
+        <div class="userL">
+            <div class="userI"><img src="images/user.png" alt=""></div>
+            <div class="userN">Tomáš Urban</div>
+            <div class="userS">
+                <div class="userJ">
+                    <div>Zaregistrován</div>
+                    <div>17.04.2023</div>
+                </div>
+                <div class="userA">
+                    <div>Příspěvky</div>
+                    <div>10</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space">
+    </div>
+    <footer>
+        <div>
+            <p class="projectInfoT">O projektu</p>
+            <p class="projectInfoS">Tato stránka vznikla za účelem informování o aktivitách Střední průmyslové školy Mladá Boleslav</p>
+        </div>
+    </footer>
+</body>
+</html>

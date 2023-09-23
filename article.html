@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="image/png" href="images/book.png"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Článek • Školní zpravodajství</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener("click", (e) => {
+            var box = document.getElementsByClassName("logreg")[0].getBoundingClientRect();
+            if(document.getElementsByClassName("logreg")[0].innerHTML != "") {
+                var buttonBlock = document.getElementsByClassName("logregbutton")[0].getBoundingClientRect();
+                var x = e.clientX;
+                var y = e.clientY;
+                console.log("DIFF: " + (box.bottom - box.top))
+                if(x >= buttonBlock.left && x <= buttonBlock.right) {
+                    if(y >= buttonBlock.top && y <= buttonBlock.bottom) return;
+                }
+                if(box.top > y || box.bottom < y || box.left > x || box.right < x) {
+                    console.log("HIDE")
+                    document.getElementsByClassName("logreg")[0].innerHTML = "";
+                    document.querySelector(":root").style.setProperty("--logregheight", "0");
+                    document.querySelector(":root").style.setProperty("--logregvisibility", "hidden");
+                }
+            }
+        })
+        function changeTitle() {
+            loadNewsPage(false);
+            var clicked = getFromFile("clicked").replace("#%*", "");
+            document.title = "Článek • " + titles[clicked] + " • Školní zpravodajství";
+        }
+
+        function changeContent() {
+            var clicked = getFromFile("clicked").replace("#%*", "");
+            console.log(clicked);
+            document.getElementsByClassName("articleIA")[0].innerHTML = '<img src="' + images[clicked] + '" alt="">';
+            document.getElementsByClassName("articleTA")[0].innerHTML = titles[clicked];
+            document.getElementsByClassName("articleANA")[0].innerHTML = authors[clicked];
+            document.getElementsByClassName("articleCA")[0].innerHTML = contents[clicked];
+        }
+
+        function openUserN() {
+            var clicked = getFromFile("clicked").replace("#%*", "");
+            console.log(authors[clicked]);
+            var index = getIndexOfUserInFile("usernames", authors[clicked]);
+            console.log(index);
+            if(authors[clicked] == "Stanislav Tesař") openUser(-3);
+            else if(authors[clicked] == "Tomáš Josef Najman") openUser(-2);
+            else if(authors[clicked] == "Tomáš Urban") openUser(-1);
+            else openUser(index);
+        }
+    </script>
+</head>
+<body onload="start(), loadUser(), changeTitle(), changeContent()" onresize="resize()">
+    <div class="loginIcon" onclick="loginButtonClick()">
+        <img src="images/login.png" alt="">
+    </div>
+    <div class="logreg">
+        <div class="logregTitle">
+            <div>Registrace</div>
+        </div>
+        <div class="error"></div>
+        <div class="nickD">
+            <div class="logregIMG">
+                <img src="images/userLogin.png" alt="">
+            </div>
+            <input type="text" placeholder="Uživatelské jméno" id="nick">
+        </div>
+        <div class="passwordD">
+            <div class="logregIMG">
+                <img src="images/password.png" alt="">
+            </div>
+            <input type="password" placeholder="Heslo" id="password">
+        </div>
+        <div class="passwordD">
+            <div class="logregIMG">
+                <img src="images/password.png" alt="">
+            </div>
+            <input type="password" placeholder="Heslo znovu" id="passwordagain">
+        </div>
+        <div class="logregbutton" onclick="register()">Zaregistrovat se</div>
+        <div class="logregSwap">
+            Již jsi členem? <span onclick="loginForm()">Přihlaš se</span>
+        </div>
+    </div>
+    <div class="head">
+        <div class="menu">
+            <div><a href="index.html">Domů</a></div>
+            <div><a href="clenove.html">Členové</a></div>
+            <div><a href="clanky.html">Články</a></div>
+        </div>
+        <img src="images/book.png" alt="">
+        <div class="bubbles">
+            
+        </div>
+    </div>
+    <div class="body">
+        <div class="articleArt">
+            <div class="articleIA">
+                <img src="images/atleti2.png" alt="">
+            </div>
+            <div class="articleTA">
+                TEST TITLE
+            </div>
+            <div class="articleAA">
+                <div>
+                    <img src="images/user.png" alt="">
+                </div>
+                <div class="articleANA" onclick="openUserN()">
+                    Tomáš Urban
+                </div>
+            </div>
+            <div class="articleCA">
+                TEST CONTENT
+            </div>
+        </div>
+    </div>
+    <div class="space">
+    </div>
+    <footer>
+        <div>
+            <p class="projectInfoT">O projektu</p>
+            <p class="projectInfoS">Tato stránka vznikla za účelem informování o aktivitách Střední průmyslové školy Mladá Boleslav</p>
+        </div>
+    </footer>
+</body>
+</html>

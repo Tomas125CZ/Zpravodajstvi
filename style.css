@@ -1,0 +1,561 @@
+* {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+:root {
+    --logregheight: 350px;
+    --logregfirstmargin: 0px;
+    --logregvisibility: hidden;
+}
+
+body {
+    background-color: rgb(16, 16, 16);
+}
+.head {
+    height: 450px;
+    width: 100%;
+    background: linear-gradient(rgb(0, 89, 135), rgb(16, 16, 16));
+    z-index: 10;
+}
+
+.head img {
+    margin-left: calc((100% - (100%/10))/2 - 25px);
+    animation-name: logoAnimation;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    padding: 25px;
+    width: calc(100%/10);
+}
+
+
+@keyframes logoAnimation {
+    0% {
+        margin-top: 135px;
+    }
+    50% {
+        margin-top: 125px;
+    }
+    100% {
+        margin-top: 135px;
+    }
+}
+
+footer {
+    background-color: rgb(25, 25, 25);
+    position:fixed;
+    bottom: 0;
+    color: rgb(255, 255, 255, 0.85);
+    text-align: center;
+    width: 100%;
+}
+footer div {
+    width: 20%;
+    margin-left: calc((100% - 20%) / 2);
+}
+.projectInfoT {
+    padding-top: 30px;
+    color: white;
+    font-weight: bolder;
+    font-size: x-large;
+}
+.projectInfoS {
+    padding-top: 15px;
+    padding-bottom: 50px;
+    text-align: left;
+    font-size: large;
+}
+.bubbles {
+    position: absolute;
+    top: 0px;
+    height: 450px;
+    width: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+.bubble {
+    background-color: rgb(255, 255, 255, 0.3);
+    border-radius: 100px;
+    z-index: 1;
+    position: absolute;
+}
+.menu {
+    margin-top: 30px;
+    position: absolute;
+    width: 25%;
+    display: flex;
+    margin-left: calc((100% - 25%) / 2);
+    height: 40px;
+    z-index: 100;
+}
+
+.menu a {
+    color: rgb(200, 200, 200);
+    font-size: x-large; 
+    text-decoration: none;
+}
+.menu div {
+    text-align: center;
+    width: calc(100%/3);
+}
+.menu a:hover {
+    cursor: pointer;
+    animation: menuAnimation;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+
+
+@keyframes menuAnimation {
+    to {
+        color: rgb(255, 255, 255);
+    }
+}
+
+.article {
+    display: flex;
+    width: 1350px;
+    height: 500px;
+    margin: auto;
+    background-color: rgb(25, 25, 25);
+    border-radius: 30px;
+    margin-bottom: 20px;
+}
+.article div:nth-child(1) {
+    width: 60%;
+}
+.article div:nth-child(2) {
+    width: 40%;
+    height: 100%;
+}
+.article div:nth-child(2) div:nth-child(1) {
+    width: 90%;
+}
+.article div:nth-child(2) div:nth-child(2) {
+    width: 85%;
+}
+.article div:nth-child(1) img {
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.article > div:nth-child(1) {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    overflow: hidden;
+}
+
+.article div:nth-child(1) img:hover {
+    animation-name: imgAnimation;
+    animation-duration: 0.25s;
+    animation-fill-mode: forwards;
+    cursor: pointer;
+}
+
+@keyframes imgAnimation {
+    from {
+        transform: rotateZ(0);
+        scale: 1;
+    }
+    to {
+        transform: rotateZ(5deg);
+        scale: 1.2;
+    }
+}
+
+.s2 .article div:nth-child(1) img {
+    width: 100%;
+}
+
+.articleT {
+    color: rgb(0, 144, 219);
+    margin-top: 45px;
+    margin-left: 25px;
+    font-size: 32px;
+}
+
+.articleS {
+    margin-top: 35px;
+    color: rgb(255, 255, 255, 0.6);
+    margin-left: 25px;
+}
+
+.articleSpace{
+    margin-top: 25px;
+}
+
+.articleT:hover {
+    cursor: pointer;
+    animation-name: titleChange;
+    animation-duration: 0.15s;
+    animation-fill-mode: forwards;
+}
+.author {
+    margin-top: -250px;
+    margin-left: 25px;  
+    display: flex;
+    color: rgb(255, 255, 255, 0.6);
+}
+.authorN {
+    color: rgb(0, 110, 110);
+    margin-top: 20px;
+}
+
+.authorN:hover {
+    cursor: pointer;
+}
+
+.authorN, .authorD {
+    margin-left: 10px;
+}
+
+
+.author img {
+    width: 75px;
+    height: 75px;
+}
+
+.space {
+    width: 100%;
+    height: 200px;
+}
+
+@keyframes titleChange {
+    from {
+        color: rgb(0, 144, 219);
+    }
+    to {
+        color: rgb(0, 121, 184);
+    }
+}
+
+.logreg {
+    background-color: white;
+    width: 350px;
+    height: var(--logregheight);
+    min-height: 300px;
+    visibility: var(--logregvisibility);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    z-index: 100;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px gray;
+}
+
+.logreg input {
+    box-sizing: border-box;
+    width: 150px;
+    height: 100%;
+    padding-left: 10px;
+    outline: 0;
+    border: 0;
+    color: black;
+    font-size: 15px;
+}
+
+.logreg input::placeholder {
+    color: gray;
+    font-size: 15px;
+}
+
+.nickD {
+    margin-top: var(--logregfirstmargin);
+}
+
+.nickD, .passwordD {
+    width: 80%;
+    margin-left: 10%;
+    height: 40px;
+    display: flex;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px gray;
+}
+
+.logregIMG {
+    background-color: rgb(0, 158, 128);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 100%;
+    width: 40px;
+}
+
+.logregIMG img {
+    aspect-ratio: 1/1;
+    width: 60%;
+    margin-left: 50%;
+    margin-top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logregTitle {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: rgb(0, 158, 128);
+    text-align: center;
+    color: white;
+    font-weight: bolder;
+    font-size: 35px;
+    font-family: sans-serif;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.logregbutton {
+    width: 80%;
+    margin-left: 10%;
+    color: white;
+    background-color: rgb(0, 158, 128);
+    border: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-weight: bolder;
+}
+
+.logregbutton:hover {
+    cursor: pointer;
+}
+
+.logregSwap {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.logregSwap span {
+    color: rgb(0, 158, 128);
+}
+
+.logregSwap span:hover {
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.currentPage {
+    background-color: white;
+}
+
+.userL {
+    width: 1350px;
+    height: 230px;
+    margin: auto;
+    border-radius: 10px;
+    background-color: rgb(25, 25, 25);
+    color: rgb(0, 110, 110);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.userI img {
+    width: 75px;
+    height: 75px;
+    margin-top: 30px;
+}
+
+.userN {
+    margin-top: 10px;
+    font-size: x-large;
+}
+
+.userN:hover {
+    cursor: pointer;
+}
+
+.userS {
+    margin-top: 10px;
+    display: flex;
+    width: 20%;
+    margin-left: 40%;
+}
+
+.userA {
+    margin-left: 100px;
+}
+
+.userInfoU {
+    background-color: rgb(25, 25, 25);
+    width: 1350px;
+    margin: auto;
+}
+
+.userIU, .userNU {
+    text-align: center;
+}
+
+.userIU img {
+    width: 150px;
+    height: 150px;
+}
+.userNU {
+    margin-top: 10px;
+    color: rgb(0, 110, 110);
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.userPU {
+    margin-bottom: 30px;
+}
+
+.loginIcon {
+    position: fixed;
+    background-color: rgb(25, 25, 25);
+    width: 40px;
+    height: 35px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    top: calc(50%);
+}
+
+.loginIcon img {
+    width: 30px;
+    height: 30px;
+}
+
+.loginIcon:hover {
+    cursor: pointer;
+}
+
+.articleArt  {
+    width: 1350px;
+    margin: auto;
+    background-color: rgb(25, 25, 25);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    margin-bottom: 50px;
+}
+
+.articleIA img {
+    width: 1350px;
+    height: 600px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.articleTA {
+    color: rgb(0, 144, 219);
+    font-size: 50px;
+    margin-left: 8%;
+    margin-top: 40px;
+}
+
+.articleAA {
+    display: flex;
+    margin-left: 8%;
+    margin-top: 15px;
+}
+
+.articleAA img {
+    width: 50px;
+    height: 50px;
+}
+
+.articleANA {
+    color: rgb(0, 110, 110);
+    font-size: larger;
+    margin-top: 16px;
+    margin-left: 10px;
+}
+
+.articleANA:hover {
+    cursor: pointer;
+}
+
+.articleCA {
+    margin-left: 8%;
+    color: rgb(255, 255, 255, 0.6);
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.add {
+    color: white;
+    border: 1px solid white;
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 100px;
+    margin: auto;
+}
+
+.add:hover {
+    cursor: pointer;
+}
+
+.add div {
+    margin-top: -1px;
+    margin-left: -0.5px;
+}
+
+.titleCC {
+    width: 60%;
+    height: 50px;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-left: 20%;
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+.subtitleCC {
+    width: 60%;
+    height: 50px;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-left: 20%;
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+.contentCC {
+    width: 80%;
+    height: 450px;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-left: 10%;
+    margin-top: 20px;
+    font-size: 30px;
+    padding: 0;
+}
+
+.button {
+    width: 100px;
+    height: 30px;
+    font-size: x-large;
+    text-align: center;
+    background-color: white;
+    color: black;
+    margin: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.button:hover {
+    cursor: pointer;
+    animation-name: buttonAnimation;
+    animation-duration: 0.25s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes buttonAnimation {
+    from {
+        background-color: white;
+    }
+    to {
+        background-color: rgb(190, 190, 190);
+    }
+}

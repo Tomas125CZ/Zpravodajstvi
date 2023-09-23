@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="image/png" href="images/book.png"/>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domů • Školní zpravodajství</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .menu div:nth-child(1) a{
+            color: rgb(255, 255, 255);
+        }
+    </style>
+    <script>
+        document.addEventListener("click", (e) => {
+            var box = document.getElementsByClassName("logreg")[0].getBoundingClientRect();
+            if(document.getElementsByClassName("logreg")[0].innerHTML != "") {
+                var buttonBlock = document.getElementsByClassName("logregbutton")[0].getBoundingClientRect();
+                var x = e.clientX;
+                var y = e.clientY;
+                console.log("DIFF: " + (box.bottom - box.top))
+                if(x >= buttonBlock.left && x <= buttonBlock.right) {
+                    if(y >= buttonBlock.top && y <= buttonBlock.bottom) return;
+                }
+                if(box.top > y || box.bottom < y || box.left > x || box.right < x) {
+                    console.log("HIDE")
+                    document.getElementsByClassName("logreg")[0].innerHTML = "";
+                    document.querySelector(":root").style.setProperty("--logregheight", "0");
+                    document.querySelector(":root").style.setProperty("--logregvisibility", "hidden");
+                }
+            }
+        })
+    </script>
+</head>
+<body onload="start(), loadUser(), load()" onresize="resize()">
+    <div class="loginIcon" onclick="loginButtonClick()">
+        <img src="images/login.png" alt="">
+    </div>
+    <div class="logreg">
+        <div class="logregTitle">
+            <div>Registrace</div>
+        </div>
+        <div class="error"></div>
+        <div class="nickD">
+            <div class="logregIMG">
+                <img src="images/userLogin.png" alt="">
+            </div>
+            <input type="text" placeholder="Uživatelské jméno" id="nick">
+        </div>
+        <div class="passwordD">
+            <div class="logregIMG">
+                <img src="images/password.png" alt="">
+            </div>
+            <input type="password" placeholder="Heslo" id="password">
+        </div>
+        <div class="passwordD">
+            <div class="logregIMG">
+                <img src="images/password.png" alt="">
+            </div>
+            <input type="password" placeholder="Heslo znovu" id="passwordagain">
+        </div>
+        <div class="logregbutton" onclick="register()">Zaregistrovat se</div>
+        <div class="logregSwap">
+            Již jsi členem? <span onclick="loginForm()">Přihlaš se</span>
+        </div>
+    </div>
+    <div class="head">
+        <div class="menu">
+            <div><a href="index.html">Domů</a></div>
+            <div><a href="clenove.html">Členové</a></div>
+            <div><a href="clanky.html">Články</a></div>
+        </div>
+        <img src="images/book.png" alt="">
+        <div class="bubbles">
+            
+        </div>
+    </div>
+    <div class="body">
+        <div class="article">
+            <div>
+                <img src="images/basketbal.png" alt="" onclick="openArticle(0)">
+            </div>
+            <div>
+                <div class="articleT" onclick="openArticle(0)">Basketbalisté SPŠ MB získali druhé místo v okresním kole</div>
+                <div class="articleS">V úterý 18.10.2022 se konal turnaj středních škol v basketbalu ve sportovní hale MB. Šest družstev se utkalo o titul přeborníka okresu MB. Náš tým ve složení Vacula Eduard, Máj Richard, Hejduk Václav (všichni 3.C), Karel Vojtěch, Korda Jakub (oba 4.C), Hanitz Ondřej ( 1.A ), Nypl Štěpán, Havlíček Filip ( oba 1.D ), Král David, Nechaiev Vladyslav ( oba 1.E ) a Šákr Filip ( 1.B ) se postupně ve skupině utkal s týmy ISZŠ a 8G. V obou utkáních se po vyrovnaném průběhu podařilo zvítězit...</div>
+                <div class="author">
+                    <img src="images/user.png">
+                    <div class="authorInfo">
+                        <div class="authorN" onclick="openUser(-2)">Tomáš Josef Najman</div>
+                        <div class="authorD">14.04.2023</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="article">
+            <div>
+                <img src="images/atleti.png" alt="" onclick="openArticle(1)">
+            </div>
+            <div>
+                <div class="articleT" onclick="openArticle(1)">Atleti SPŠ MB čtvrtí na krajském kole a patnáctí v republice</div>
+                <div class="articleS">Ve středu 5.10.2022 proběhlo krajské kolo Středoškolského atletického poháru v Kolíně na místním atletickém stadionu. Naše družstvo ve složení Jan Bečvařík, Matěj Kuntoš (oba 2.C), Martin Krubert, Jan Filipec (oba 2.B), Martin Hojný, Jan Hofman (oba 4.A), Václav Ježek (3.C), Vojtěch Karel (4.C), Martin Horák (2.A), František Jelínek (1.D), Jan Bobenič (1.A) a Adam Vostřel (2.D) se snažilo od začátku bojovat o medaile nebo dokonce o postup na republikové kolo. Bohlužel v závěru nám chybělo pár bodů, zejména z disciplín vrh koulí, dálka a běh na 400 m...</div>
+                <div class="author">
+                    <img src="images/user.png">
+                    <div class="authorInfo">
+                        <div class="authorN" onclick="openUser(-2)">Tomáš Josef Najman</div>
+                        <div class="authorD">14.04.2023</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="article">
+            <div>
+                <img src="images/atleti2.png" alt="" onclick="openArticle(2)">
+            </div>
+            <div>
+                <div class="articleT" onclick="openArticle(2)">Atleti zvítězili v okresním kole</div>
+                <div class="articleS">Ve čtvrtek 22.9.2022 proběhlo okresní kolo Středoškolského atletického poháru na městském stadionu v Mladé Boleslavi. Naše družstvo ve složení Jan Bečvařík, Pavel Rousek, Matěj Kuntoš, (2.Cs), Martin Krubert, Jan Filipec (2.Bi), Martin Hojný, Jan Hofman (4.Ai), Václav Ježek (3.Cs), Karel Vojtěch (4.Cs), Martin Horák (2.Ai), Adam Vostřel (2.Ds) bojovalo skvěle od první disciplíny o postup na kraj o celkové vítězství.<div class="articleSpace"></div>Ve sprintu na 60 m zvítězil Martin Krubert (7,51s - 1.místo), dále bodoval Martin Horák (7,71s -4.). Na 400 m opět Martin Krubert (53,87s - 1.) a za ním Jan Bečvařík (57,71s - 4.)...</div>
+                <div class="author">
+                    <img src="images/user.png">
+                    <div class="authorInfo">
+                        <div class="authorN" onclick="openUser(-1)">Tomáš Urban</div>
+                        <div class="authorD">14.04.2023</div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        <div class="article">
+            <div>
+                <img src="images/prijimacky.jpg" alt="" onclick="openArticle(3)">
+            </div>
+            <div>
+                <div class="articleT" onclick="openArticle(3)">Na naší škole se konaly jednotné přijímací zkoušky</div>
+                <div class="articleS">Budova Střední průmyslové školy bude otevřena vždy od 8:00 pro oba dny. Prosíme, aby rodiče nevodili své potomky do školy. Na chodbách budou dozory a o uchazeče se v případě potřeby postarají.<div class="articleSpace"></div>V minulém týdnu vám byli poštou doručeny dva dopisy. Na dopisech byli uvedeny datum, čas a místo konání a učebna konání JPZ...</div>
+                <div class="author">
+                    <img src="images/user.png">
+                    <div class="authorInfo">
+                        <div class="authorN" onclick="openUser(-3)">Stanislav Tesař</div>
+                        <div class="authorD">14.04.2023</div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        <div class="article">
+            <div>
+                <img src="images/soutez.png" alt="" onclick="openArticle(4)">
+            </div>
+            <div>
+                <div class="articleT" onclick="openArticle(4)">Na naší škole proběhla recitační soutěž</div>
+                <div class="articleS">Na naší škole proběhla recitační soutěž dne 21.2.2023, které se účastnili žáci všech ročníků.</div>
+                <div class="author">
+                    <img src="images/user.png">
+                    <div class="authorInfo">
+                        <div class="authorN" onclick="openUser(-3)">Stanislav Tesař</div>
+                        <div class="authorD">14.04.2023</div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+    <div class="space">
+    </div>
+    <footer>
+        <div>
+            <p class="projectInfoT">O projektu</p>
+            <p class="projectInfoS">Tato stránka vznikla za účelem informování o aktivitách Střední průmyslové školy Mladá Boleslav</p>
+        </div>
+    </footer>
+</body>
+</html>
